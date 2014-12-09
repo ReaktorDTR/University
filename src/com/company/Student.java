@@ -7,6 +7,7 @@ import java.util.List;
 /**
  * Created by nromanen on 12/8/2014.
  */
+
 public class Student implements Serializable {
     private String name;
     private String lastName;

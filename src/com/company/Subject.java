@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by nromanen on 12/8/2014.
  */
+
 public class Subject implements Serializable {
     private String nameOfSubject;
 

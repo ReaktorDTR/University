@@ -61,6 +61,8 @@ public class Main {
         }
     }
 
+
+
     public static Journal journalFromFile() {
         try (ObjectInputStream inputStream = new ObjectInputStream(new FileInputStream("testBase.dat"))) {
             return (Journal) inputStream.readObject();

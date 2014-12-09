@@ -10,6 +10,7 @@ import java.util.List;
 /**
  * Created by nromanen on 12/8/2014.
  */
+
 public class Journal implements Serializable {
     private List<Group> groups = new ArrayList<>();
     private List<Subject> subjects = new ArrayList<>();

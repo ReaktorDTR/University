@@ -5,6 +5,7 @@ import java.io.Serializable;
 /**
  * Created by nromanen on 12/8/2014.
  */
+
 public class Rating implements Serializable {
     private Subject subject;
     private int rating;
