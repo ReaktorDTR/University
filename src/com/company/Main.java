@@ -6,38 +6,36 @@ public class Main {
 
     public static void main(String[] args) {
         Journal journal = new Journal();
-/*        journal.addGroupToJournal("Programmer");
+        journal.addGroupToJournal("Programmer");
         journal.addGroupToJournal("Tech");
-        journal.addStudentToGroup("Serhii Dovhaniuk Programmer");
-        journal.addStudentToGroup("Lilya Doruna Programmer");
-        journal.addStudentToGroup("Anton Deryabin Tech");
-        journal.addStudentToGroup("Tanya Zabrin Tech");
-        journal.addRatingToJournal("Serhii Dovhaniuk Programmer Math 5");
-        journal.addRatingToJournal("Serhii Dovhaniuk Programmer Economy 2");
-        journal.addRatingToJournal("Tanya Zabrin Tech Math 4");
-        journal.addRatingToJournal("Tanya Zabrin Tech Biology 5");*/
+        journal.addSubjectToJournal("Tech");
+        journal.addSubjectToJournal("Math");
         String inputData = "";
         while (!inputData.equals("E")) {
             System.out.print("key : ");
             inputData = inputFromKeyboard();
             if (inputData.equals("AG")) {
                 journal.addGroupToJournal(inputFromKeyboard());
-            } else if (inputData.equals("AS")) {
-                System.out.println("n ls gr");
-                journal.addStudentToGroup(inputFromKeyboard());
+            } else if (inputData.equals("ASTG")) {
+                journal.addStudentsToGroup();
             } else if (inputData.equals("LS")) {
                 journal.outListOfStudents();
             } else if (inputData.equals("LR")) {
                 journal.outListOfRatings();
-            } else if (inputData.equals("AR")) {
-                System.out.println("n ls gr sub r");
-                journal.addRatingToJournal(inputFromKeyboard());
+            } else if (inputData.equals("AS")) {
+                journal.addSubjectToJournal(inputFromKeyboard());
+            } else if (inputData.equals("ARBS")) {
+                journal.addRatingByStudent();
+            } else if (inputData.equals("ARTGBS")) {
+                journal.addRatingsToGroupBySubject();
             } else if (inputData.equals("CJ")) {
                 journal = null;
             } else if (inputData.equals("SJ")) {
                 journalToFile(journal);
             } else if (inputData.equals("LJ")) {
                 journal = journalFromFile();
+            } else if (inputData.equals("H")) {
+                System.out.println("AG, ASTG, ARBS, ARTGBS, LS, LR, CJ, SJ, LJ, E, H");
             }
         }
     }

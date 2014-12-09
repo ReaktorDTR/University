@@ -10,7 +10,7 @@ import java.util.List;
 public class Student implements Serializable {
     private String name;
     private String lastName;
-    private List<Rating> ratings = new ArrayList<>();
+    private List<Rating> ratingsOfStudent = new ArrayList<>();
 
     public Student() {
     }
@@ -36,16 +36,16 @@ public class Student implements Serializable {
         this.lastName = lastName;
     }
 
-    public List<Rating> getRatings() {
-        return ratings;
+    public List<Rating> getRatingsOfStudent() {
+        return ratingsOfStudent;
     }
 
-    public void setRatings(List<Rating> ratings) {
-        this.ratings = ratings;
+    public void setRatingsOfStudent(List<Rating> ratingsOfStudent) {
+        this.ratingsOfStudent = ratingsOfStudent;
     }
 
     public void addRating(Rating rating) {
-        this.ratings.add(rating);
+        this.ratingsOfStudent.add(rating);
     }
 
     @Override
