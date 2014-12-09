@@ -1,35 +1,21 @@
 package com.company;
 
+import java.io.Serializable;
+
 /**
  * Created by nromanen on 12/8/2014.
  */
-public class Rating {
-    private Student student;
-    private Lesson lesson;
+public class Rating implements Serializable {
+    private Subject subject;
     private int rating;
 
-    public Rating(Student student, Lesson lesson, int rating) {
-        this.student = student;
-        this.lesson = lesson;
-        this.rating = rating;
+    public Subject getSubject() {
+        return subject;
     }
 
-    public Student getStudent() {
-        return student;
+    public void setSubject(Subject subject) {
+        this.subject = subject;
     }
-
-    public void setStudent(Student student) {
-        this.student = student;
-    }
-
-    public Lesson getLesson() {
-        return lesson;
-    }
-
-    public void setLesson(Lesson lesson) {
-        this.lesson = lesson;
-    }
-
 
     public int getRating() {
         return rating;
@@ -40,6 +26,11 @@ public class Rating {
     }
 
     @Override
+    public String toString() {
+        return getSubject() + " " + String.valueOf(getRating());
+    }
+
+    @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
@@ -47,16 +38,14 @@ public class Rating {
         Rating rating1 = (Rating) o;
 
         if (rating != rating1.rating) return false;
-        if (!lesson.equals(rating1.lesson)) return false;
-        if (!student.equals(rating1.student)) return false;
+        if (subject != null ? !subject.equals(rating1.subject) : rating1.subject != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = student.hashCode();
-        result = 31 * result + lesson.hashCode();
+        int result = subject != null ? subject.hashCode() : 0;
         result = 31 * result + rating;
         return result;
     }
