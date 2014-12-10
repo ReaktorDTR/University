@@ -15,10 +15,46 @@ public class Journal implements Serializable {
     private List<Group> groups = new ArrayList<>();
     private List<Subject> subjects = new ArrayList<>();
 
-    public void addGroupToJournal(String dataInput) {
+    public void addGroupToJournal(String nameOfGroup) {
         Group newGroup = new Group();
-        newGroup.setNameOfGroup(dataInput);
-        this.groups.add(newGroup);
+        newGroup.setNameOfGroup(nameOfGroup);
+        if (!this.groups.contains(newGroup)) {
+            this.groups.add(newGroup);
+        }
+    }
+
+    public void removeGroupFromJournal() {
+        System.out.println("Select group to remove");
+        removeGroupFromJournal(getGroupNumberFromKeyboard());
+    }
+
+    public void removeGroupFromJournal(int groupNumber) {
+        groups.remove(groupNumber);
+    }
+
+    public void addSubjectToJournal(String nameOfSubject) {
+        Subject newSubject = new Subject();
+        newSubject.setName(nameOfSubject);
+        if (!this.subjects.contains(newSubject)) {
+            this.subjects.add(newSubject);
+        }
+    }
+
+    public void removeSubjectFromJournal() {
+        System.out.println("Select subject to remove");
+        removeSubjectFromJournal(getSubjectNumberFromKeyboard());
+    }
+
+    public void removeSubjectFromJournal(int subjectNumber) {
+        subjects.remove(subjectNumber);
+    }
+
+    public void addStudentToGroup() {
+        int groupNumber = getGroupNumberFromKeyboard();
+        System.out.println("Add student (Name and LastName)");
+        String inputData = inputFromKeyboard();
+        String[] studentData = inputData.split(" ");
+        groups.get(groupNumber).addStudentToGroup(new Student(studentData[0], studentData[1]));
     }
 
     public void addStudentsToGroup() {
@@ -32,8 +68,14 @@ public class Journal implements Serializable {
         }
     }
 
-    public void addRatingByStudent() {
-        outListOfGroups();
+    public void removeStudentFromGroup() {
+        int groupNumber = getGroupNumberFromKeyboard();
+        int studentNumber = getStudentNumberFromKeyboardByGroup(groupNumber);
+        Student student = groups.get(groupNumber).getListOfStudents().get(studentNumber);
+        groups.get(groupNumber).removeStudentFromGroup(student);
+    }
+
+    public void addRatingToStudent() {
         int groupNumber = getGroupNumberFromKeyboard();
         int studentNumber = getStudentNumberFromKeyboardByGroup(groupNumber);
         int subjectNumber = getSubjectNumberFromKeyboard();
@@ -41,28 +83,32 @@ public class Journal implements Serializable {
         rating.setSubject(subjects.get(subjectNumber));
         System.out.print("Set rating ");
         rating.setRating(Integer.parseInt(inputFromKeyboard()));
-        groups.get(groupNumber).getListOfStudents().get(studentNumber).getRatingsOfStudent().add(rating);
+        groups.get(groupNumber).getListOfStudents().get(studentNumber).addRating(rating);
+    }
+
+    public void removeRatingFromStudent() {
+        int groupNumber = getGroupNumberFromKeyboard();
+        int studentNumber = getStudentNumberFromKeyboardByGroup(groupNumber);
+        outListOfRatingsByStudent(groupNumber, studentNumber);
+        int ratingNumber = 0;
+        ratingNumber = Integer.parseInt(inputFromKeyboard()) - 1;
+        Rating rating = groups.get(groupNumber).getListOfStudents().get(studentNumber).getRatingsOfStudent().get(ratingNumber);
+        groups.get(groupNumber).getListOfStudents().get(studentNumber).removeRating(rating);
     }
 
     public void addRatingsToGroupBySubject() {
         int subjectNumber = getSubjectNumberFromKeyboard();
         int groupNumber = getGroupNumberFromKeyboard();
         System.out.println("Subject " + subjects.get(subjectNumber).getName() + " - Group " + groups.get(groupNumber).getNameOfGroup());
-        Rating rating = new Rating();
-        rating.setSubject(subjects.get(subjectNumber));
         List<Student> students = groups.get(groupNumber).getListOfStudents();
         for (int i = 0; i < students.size(); i++) {
             Student student = students.get(i);
             System.out.print(student + " ");
+            Rating rating = new Rating();
+            rating.setSubject(subjects.get(subjectNumber));
             rating.setRating(Integer.parseInt(inputFromKeyboard()));
-            student.getRatingsOfStudent().add(rating);
+            student.addRating(rating);
         }
-    }
-
-    public void addSubjectToJournal(String nameOfSubject) {
-        Subject subject = new Subject();
-        subject.setName(nameOfSubject);
-        subjects.add(subject);
     }
 
     private int getSubjectNumberFromKeyboard() {
@@ -80,7 +126,7 @@ public class Journal implements Serializable {
     }
 
     private int getStudentNumberFromKeyboardByGroup(int groupNumber) {
-        outListOfStudent(groupNumber);
+        outListOfStudentsByGroup(groupNumber);
         int studentNumber = 0;
         studentNumber = Integer.parseInt(inputFromKeyboard()) - 1;
         return studentNumber;
@@ -89,14 +135,6 @@ public class Journal implements Serializable {
     public void outListOfGroups() {
         for (int i = 0; i < groups.size(); i++) {
             System.out.println((i + 1) + ". " + groups.get(i).getNameOfGroup());
-        }
-    }
-
-    public void outListOfStudent(int numberOfGroup) {
-        List<Student> students = groups.get(numberOfGroup).getListOfStudents();
-        for (int i = 0; i < students.size(); i++) {
-            Student student = students.get(i);
-            System.out.println((i + 1) + ". " + student);
         }
     }
 
@@ -109,13 +147,29 @@ public class Journal implements Serializable {
         }
     }
 
+    public void outListOfStudentsByGroup(int groupNumber) {
+        List<Student> students = groups.get(groupNumber).getListOfStudents();
+        for (int i = 0; i < students.size(); i++) {
+            Student student = students.get(i);
+            System.out.println((i + 1) + ". " + student);
+        }
+    }
+
+    public void outListOfRatingsByStudent(int groupNumber, int studentNumber) {
+        List<Rating> ratings = groups.get(groupNumber).getListOfStudents().get(studentNumber).getRatingsOfStudent();
+        for (int i = 0; i < ratings.size(); i++) {
+            Rating rating = ratings.get(i);
+            System.out.println((i + 1) + ". " + rating);
+        }
+    }
+
     public void outListOfSubjects() {
         for (int i = 0; i < subjects.size(); i++) {
             System.out.println((i + 1) + ". " + subjects.get(i));
         }
     }
 
-    public void outListOfRatings() {
+    public void outListOfRatingsAllStudents() {
         for (Group group : groups) {
             System.out.println("Group: " + group.getNameOfGroup());
             for (Student student : group.getListOfStudents()) {

@@ -46,7 +46,18 @@ public class Student implements Serializable {
     }
 
     public void addRating(Rating rating) {
-        this.ratingsOfStudent.add(rating);
+        boolean isFound = false;
+        for (int i = 0; i < ratingsOfStudent.size(); i++) {
+            if (ratingsOfStudent.get(i).getSubject().equals(rating.getSubject())) {
+                ratingsOfStudent.set(i, rating);
+                isFound = true;
+            }
+        }
+        if (!isFound) ratingsOfStudent.add(rating);
+    }
+
+    public void removeRating(Rating rating) {
+        ratingsOfStudent.remove(ratingsOfStudent.indexOf(rating));
     }
 
     @Override

@@ -21,4 +21,22 @@ public class Subject implements Serializable {
     public String toString() {
         return this.nameOfSubject;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Subject subject = (Subject) o;
+
+        if (nameOfSubject != null ? !nameOfSubject.equals(subject.nameOfSubject) : subject.nameOfSubject != null)
+            return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return nameOfSubject != null ? nameOfSubject.hashCode() : 0;
+    }
 }
