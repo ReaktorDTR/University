@@ -16,11 +16,16 @@ public class Journal implements Serializable {
     private List<Subject> subjects = new ArrayList<>();
 
     public void addGroupToJournal(String nameOfGroup) {
-        Group newGroup = new Group();
-        newGroup.setNameOfGroup(nameOfGroup);
-        if (!this.groups.contains(newGroup)) {
-            this.groups.add(newGroup);
+        if (Validation.validateNameOfGroup(nameOfGroup)) {
+            Group newGroup = new Group();
+            newGroup.setNameOfGroup(nameOfGroup);
+            if (!this.groups.contains(newGroup)) {
+                this.groups.add(newGroup);
+            }
+        } else {
+            System.out.println("Bad input");
         }
+
     }
 
     public void removeGroupFromJournal() {
@@ -33,10 +38,14 @@ public class Journal implements Serializable {
     }
 
     public void addSubjectToJournal(String nameOfSubject) {
-        Subject newSubject = new Subject();
-        newSubject.setName(nameOfSubject);
-        if (!this.subjects.contains(newSubject)) {
-            this.subjects.add(newSubject);
+        if (Validation.validateNameOFSubject(nameOfSubject)) {
+            Subject newSubject = new Subject();
+            newSubject.setName(nameOfSubject);
+            if (!this.subjects.contains(newSubject)) {
+                this.subjects.add(newSubject);
+            }
+        } else {
+            System.out.println("Bad data");
         }
     }
 
@@ -82,7 +91,7 @@ public class Journal implements Serializable {
         Rating rating = new Rating();
         rating.setSubject(subjects.get(subjectNumber));
         System.out.print("Set rating ");
-        rating.setRating(Integer.parseInt(inputFromKeyboard()));
+        rating.setMark(Integer.parseInt(inputFromKeyboard()));
         groups.get(groupNumber).getListOfStudents().get(studentNumber).addRating(rating);
     }
 
@@ -106,7 +115,7 @@ public class Journal implements Serializable {
             System.out.print(student + " ");
             Rating rating = new Rating();
             rating.setSubject(subjects.get(subjectNumber));
-            rating.setRating(Integer.parseInt(inputFromKeyboard()));
+            rating.setMark(Integer.parseInt(inputFromKeyboard()));
             student.addRating(rating);
         }
     }

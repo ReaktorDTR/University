@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 public class Rating implements Serializable {
     private Subject subject;
-    private int rating;
+    private int mark;
 
     public Subject getSubject() {
         return subject;
@@ -18,17 +18,17 @@ public class Rating implements Serializable {
         this.subject = subject;
     }
 
-    public int getRating() {
-        return rating;
+    public int getMark() {
+        return mark;
     }
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 
     @Override
     public String toString() {
-        return getSubject() + " " + String.valueOf(getRating());
+        return getSubject() + " " + String.valueOf(getMark());
     }
 
     @Override
@@ -38,7 +38,7 @@ public class Rating implements Serializable {
 
         Rating rating1 = (Rating) o;
 
-        if (rating != rating1.rating) return false;
+        if (mark != rating1.mark) return false;
         if (subject != null ? !subject.equals(rating1.subject) : rating1.subject != null) return false;
 
         return true;
@@ -47,7 +47,7 @@ public class Rating implements Serializable {
     @Override
     public int hashCode() {
         int result = subject != null ? subject.hashCode() : 0;
-        result = 31 * result + rating;
+        result = 31 * result + mark;
         return result;
     }
 }

@@ -30,6 +30,8 @@ public class UserMenu {
                 journal.addStudentToGroup();
             } else if (inputData.equals("RSFG")) {
                 journal.removeStudentFromGroup();
+            } else if (inputData.equals("LG")) {
+                journal.outListOfGroups();
             } else if (inputData.equals("LS")) {
                 journal.outListOfStudents();
             } else if (inputData.equals("LSB")) {
@@ -53,7 +55,7 @@ public class UserMenu {
             } else if (inputData.equals("LXML")) {
                 journal = ioJournal.loadFromXML();
             } else if (inputData.equals("H")) {
-                System.out.println("AG, RG, AS, RS,  ASTG, AOSTG, RSFG, LS, LSB, LR, ARTS, RRFS, ARTGBS, CJ, SJ, LJ, SXML, LXML, E, H");
+                System.out.println("AG, RG, AS, RS, ASTG, AOSTG, RSFG, LG, LS, LSB, LR, ARTS, RRFS, ARTGBS, CJ, SJ, LJ, SXML, LXML, E, H");
             }
         }
     }
