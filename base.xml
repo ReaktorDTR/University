@@ -1,7 +1,7 @@
 <Journal>
   <groups>
     <Group>
-      <nameOfGroup>Programmer</nameOfGroup>
+      <nameOfGroup>Programmer21</nameOfGroup>
       <listOfStudents>
         <Student>
           <name>Serhii</name>
@@ -11,13 +11,25 @@
               <subject>
                 <nameOfSubject>Math</nameOfSubject>
               </subject>
-              <rating>5</rating>
+              <mark>5</mark>
+            </Rating>
+            <Rating>
+              <subject>
+                <nameOfSubject>Art</nameOfSubject>
+              </subject>
+              <mark>2</mark>
             </Rating>
             <Rating>
               <subject>
                 <nameOfSubject>Bio</nameOfSubject>
               </subject>
-              <rating>4</rating>
+              <mark>4</mark>
+            </Rating>
+            <Rating>
+              <subject>
+                <nameOfSubject>Tech</nameOfSubject>
+              </subject>
+              <mark>1</mark>
             </Rating>
           </ratingsOfStudent>
         </Student>
@@ -29,13 +41,19 @@
               <subject>
                 <nameOfSubject>Math</nameOfSubject>
               </subject>
-              <rating>5</rating>
+              <mark>5</mark>
             </Rating>
             <Rating>
               <subject>
                 <nameOfSubject>Bio</nameOfSubject>
               </subject>
-              <rating>5</rating>
+              <mark>5</mark>
+            </Rating>
+            <Rating>
+              <subject>
+                <nameOfSubject>Tech</nameOfSubject>
+              </subject>
+              <mark>2</mark>
             </Rating>
           </ratingsOfStudent>
         </Student>
@@ -52,7 +70,7 @@
               <subject>
                 <nameOfSubject>Tech</nameOfSubject>
               </subject>
-              <rating>5</rating>
+              <mark>5</mark>
             </Rating>
           </ratingsOfStudent>
         </Student>
@@ -64,7 +82,7 @@
               <subject>
                 <nameOfSubject>Tech</nameOfSubject>
               </subject>
-              <rating>3</rating>
+              <mark>3</mark>
             </Rating>
           </ratingsOfStudent>
         </Student>
@@ -74,6 +92,9 @@
   <subjects>
     <Subject>
       <nameOfSubject>Tech</nameOfSubject>
+    </Subject>
+    <Subject>
+      <nameOfSubject>Art</nameOfSubject>
     </Subject>
     <Subject>
       <nameOfSubject>Math</nameOfSubject>
